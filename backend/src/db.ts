@@ -1,0 +1,26 @@
+import mongoose, { model, Schema } from "mongoose"
+
+mongoose.connect("mongodb+srv://22it107:ziLxrLfcmHHQZzLq@cluster0.jf64ciq.mongodb.net/brainly")
+    .then(() => console.log("✅ MongoDB Connected"))
+    .catch((err) => console.error("❌ MongoDB Connection Error:", err));
+
+
+const UserSchema = new Schema({
+    username: {
+        type: String,
+        unique: true
+    },
+    password: String
+})
+
+export const UserModel = model("User", UserSchema);
+
+
+const ContentSchema = new Schema({
+    title: String,
+    link: String,
+    tags: [{ type: mongoose.Types.ObjectId, ref: 'Tag' }],//This is a foreign key
+    userId: { type: mongoose.Types.ObjectId, ref: 'User', required: true } //This is a foreign key
+})
+
+export const ContentModel = model("Content", ContentSchema)

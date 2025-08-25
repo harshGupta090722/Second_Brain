@@ -1,8 +1,10 @@
+export type IconSize = "sm" | "md" | "lg"
+
 export interface IconProps {
-    size?: "sm" | "md" | "lg"
+    size?: IconSize
 }
 
-export const iconSizeVariants: Record<IconProps["size"], string> = {
+export const iconSizeVariants: Record<IconSize, string> = {
     "sm": "size-2",
     "md": "size-4",
     "lg": "size-6",

@@ -35,7 +35,7 @@ export const Button = (props: ButtonProps) => {
   return (
     <button
       onClick={props.onClick}
-      className={`${variantClasses[props.variant]} ${sizeClasses[props.size]}`}
+      className={`flex items-center gap-2 rounded-md ${variantClasses[props.variant]} ${sizeClasses[props.size]}`}
     >
       {props.startIcon && <span className="flex items-center">{props.startIcon}</span>}
       {props.text}

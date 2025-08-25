@@ -1,5 +1,7 @@
 import './App.css'
 import { Button } from './components/ui/Button'
+import { Plusicon } from './components/icons/Plusicon.tsx'
+import { Rocketicon } from './components/icons/Rocketicon.tsx'
 
 function App() {
 
@@ -10,21 +12,11 @@ function App() {
         size="md"
         text="Share"
         onClick={() => alert("Button Clicked!")}
-        startIcon={<span>🔥</span>}
-        endIcon={<span>➡️</span>}
-      />
-      <Button
-        variant="secondary"
-        size="md"
-        text="Add Content"
-        onClick={() => alert("Button Clicked!")}
-        startIcon={<span>🔥</span>}
-        endIcon={<span>➡️</span>}
+        startIcon={<Plusicon/>}
+        endIcon={<Rocketicon/>}
       />
     </>
   )
 }
 
 export default App
-
-//Use hericons for icons tomorrow.

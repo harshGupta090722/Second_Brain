@@ -1,12 +1,12 @@
 import type { ReactElement } from "react";
 
 interface ButtonProps {
-    variant: "primary" | "secondary";
-    size: "sm" | "md" | "large";
-    text: String;
-    startIcon?: ReactElement;
-    endIcon?: ReactElement;
-    onClick: () => void;
+  variant: "primary" | "secondary";
+  size: "sm" | "md" | "large";
+  text: string;
+  startIcon?: ReactElement;
+  endIcon?: ReactElement;
+  onClick: () => void;
 }
 
 type VariantClasses = {
@@ -15,8 +15,8 @@ type VariantClasses = {
 };
 
 const variantClasses: VariantClasses = {
-  primary: "bg-purple-600 text-white hover:bg-blue-700",
-  secondary: "bg-purple-300 text-gray-600 hover:bg-gray-300",
+  primary: "bg-purple-600 text-white",
+  secondary: "bg-purple-400 text-purple-600",
 };
 
 type SizeClasses = {
@@ -32,14 +32,14 @@ const sizeClasses: SizeClasses = {
 };
 
 export const Button = (props: ButtonProps) => {
-    return (
-        <button
-            onClick={props.onClick}
-            className={`flex-row mx-[5px]  items-center gap-2 rounded-lg font-medium transition ${variantClasses[props.variant]} ${sizeClasses[props.size]}`}
-        >
-            {props.startIcon && <span className="flex items-center">{props.startIcon}</span>}
-            {props.text}
-            {props.endIcon && <span className="flex items-center">{props.endIcon}</span>}
-        </button>
-    );
+  return (
+    <button
+      onClick={props.onClick}
+      className={`${variantClasses[props.variant]} ${sizeClasses[props.size]}`}
+    >
+      {props.startIcon && <span className="flex items-center">{props.startIcon}</span>}
+      {props.text}
+      {props.endIcon && <span className="flex items-center">{props.endIcon}</span>}
+    </button>
+  );
 };

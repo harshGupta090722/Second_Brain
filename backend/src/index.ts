@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import { ContentModel, LinkModel, UserModel } from "./db.js";
 import { JWT_PASSWORD } from "./config.js";
@@ -7,6 +6,9 @@ import { userMiddleware } from "./middleware.js";
 import { random } from "./util.js";
 const app = express();
 app.use(express.json());
+import cors from "cors"
+
+app.use(cors());
 
 
 app.post("/api/v1/signup", async (req, res) => {
@@ -17,12 +19,13 @@ app.post("/api/v1/signup", async (req, res) => {
             username,
             password
         })
-        res.json({
+        res.status(200).json({
             message: "User Signed Up"
         })
     } catch (error) {
         res.status(411).json({
             message: "User already exists"
+
         })
     }
 })
@@ -40,7 +43,7 @@ app.post("/api/v1/signin", async (req, res) => {
             id: existingUser._id
         }, JWT_PASSWORD)
         res.json({
-            messag: "You are Signed In !",
+            message: "You are Signed In !",
             token
         });
     } else {

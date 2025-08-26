@@ -1,37 +1,20 @@
-import { Shareicon } from "../icons/Shareicon";
+import { Logo } from "../icons/Logo";
+import { Twittericon } from "../icons/Twittericon";
+import { Youtubeicon } from "../icons/Youtubeicon";
+import { Sidebaritem } from "./SidebarItem";
 
-interface CardProps {
-    title: string;
-    link: string;
-    type: "twitter" | "youtube";
-}
-
-
-export function Card({ title, link, type }: CardProps) {
-    return <div className="p-4 bg-white rounded-md border-gray-200 max-w-72 border">
-        <div className="flex justify-between">
-            <div className="flex items-center text-md">
-                <div className="pr-2 text-gray-500">
-                    <a href={link} target="_blank"></a>
-                    <Shareicon />
-                </div>
-
-                {title}
+export function Sidebar() {
+    return <div className=" h-screen bg-white border-r w-72 fixed
+    left-0 top-0  pl-6">
+        <div className="flex text-2xl pt-8 items-center">
+            <div className="pr-3 ">
+                <Logo />
             </div>
-            <div className="flex items-center">
-                <div className="pr-2 text-gray-500">
-                    <Shareicon />
-                </div>
-                <div className="pr-2 text-gray-500">
-                    <Shareicon />
-                </div>
-            </div>
+            Brainly
         </div>
-        <div className="pt-4">
-            {type === "youtube" && <iframe className="w-full" src={link.replace("watch?v=6p8R6vFuFMI&ab_channel=100xDevs", "embed/6p8R6vFuFMI?si=p72gVv1jfHMoOOCS")} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
-            {type === "twitter" && <blockquote className="twitter-tweet">
-                <a href={link.replace("x.com", "twitter.com")}></a>
-            </blockquote>}
+        <div className="pt-8 pl-4">
+            <Sidebaritem text="Twitter" icon={<Twittericon />}></Sidebaritem>
+            <Sidebaritem text="Youtube" icon={<Youtubeicon />}></Sidebaritem>
         </div>
     </div>
 }

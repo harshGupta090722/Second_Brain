@@ -9,26 +9,29 @@ export function Signin() {
     const [loading, setLoading] = useState(false);
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
     const handleSignin = async () => {
         const username = usernameRef.current?.value;
         const password = passwordRef.current?.value;
-
+        //console.log(username + " User name and password aagya hai " + password);
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
         }, 2000);
 
         try {
+            console.log("CONTROL REACHED HERE SAFELY 1");
             const response = await axios.post(`${BACKEND_URL}/signin`, {
                 username,
                 password,
             });
+            console.log("CONTROL REACHED HERE SAFELY 2");
+
 
             if (response.status === 200) {
-                const jwt=response.data.token; //In axios response.data has the final data that the backend has returned you!
-                localStorage.setItem("token",jwt);
+                const jwt = response.data.token; //In axios response.data has the final data that the backend has returned you!
+                localStorage.setItem("token", jwt);
                 navigate("/dashboard");
             }
         } catch (error: any) {
@@ -44,8 +47,8 @@ export function Signin() {
     return <div className="h-screen w-screen bg-gray-200
     flex justify-center items-center">
         <div className="bg-white rounded-xl border min-w-48 p-8">
-            <Input placeholder="username" />
-            <Input placeholder="password" />
+            <Input ref={usernameRef} placeholder="username" />
+            <Input ref={passwordRef} placeholder="password" />
             <div className="flex justify-center pt-4 ">
                 <Button onClick={handleSignin} loading={loading} variant="primary" text="Signin" fullWidth={true} />
             </div>

@@ -1,6 +1,5 @@
 import type { ReactElement } from "react";
 
-
 interface ButtonProps {
     variant: "primary" | "secondary";
     text: string;

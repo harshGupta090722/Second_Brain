@@ -8,10 +8,12 @@ mongoose.connect("mongodb+srv://22it107:ziLxrLfcmHHQZzLq@cluster0.jf64ciq.mongod
 const UserSchema = new Schema({
     username: {
         type: String,
+        required:true,
         unique: true
     },
     password: String
 })
+
 
 export const UserModel = model("User", UserSchema);
 
@@ -19,6 +21,7 @@ export const UserModel = model("User", UserSchema);
 const ContentSchema = new Schema({
     title: String,
     link: String,
+    type:String,
     tags: [{ type: mongoose.Types.ObjectId, ref: 'Tag' }],//This is a foreign key
     userId: { type: mongoose.Types.ObjectId, ref: 'User', required: true } //This is a foreign key
 })

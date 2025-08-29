@@ -9,12 +9,24 @@ app.use(express.json());
 import cors from "cors"
 
 app.use(cors());
-
+declare global {
+    namespace Express {
+        interface Request {
+            userId?: string;
+        }
+    }
+}
 
 app.post("/api/v1/signup", async (req, res) => {
 
     const { username, password } = req.body;
     try {
+        const existingUser = await UserModel.findOne({ username: username });
+        if (existingUser) {
+            return res.status(400).json({ errors: "User already exists" });
+        }
+
+
         await UserModel.create({
             username,
             password
@@ -23,9 +35,8 @@ app.post("/api/v1/signup", async (req, res) => {
             message: "User Signed Up"
         })
     } catch (error) {
-        res.status(411).json({
-            message: "User already exists"
-
+        res.status(404).json({
+            message: "Some Error occured"
         })
     }
 })
@@ -55,11 +66,11 @@ app.post("/api/v1/signin", async (req, res) => {
 
 app.post("/api/v1/content", userMiddleware, async (req, res) => {
     try {
-        const { link, type } = req.body;
+        const { title, link, type } = req.body;
         await ContentModel.create({
+            title,
             link,
             type,
-            //@ts-ignore
             userId: req.userId,
             tags: []
         })
@@ -73,14 +84,13 @@ app.post("/api/v1/content", userMiddleware, async (req, res) => {
 })
 
 app.get("/api/v1/content", userMiddleware, async (req, res) => {
-    //@ts-ignore
     const userId = req.userId;
     const content = await ContentModel.find({
         userId: userId
     }).populate("userId", "username")
     res.json({
         content,
-        message: "Content Added"
+        message: "Here is your content"
     })
 })
 
@@ -127,7 +137,6 @@ app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
 
 app.get("/api/v1/brain/:shareLink", async (req, res) => {
     const hash = req.params.shareLink;
-
     const link = await LinkModel.findOne({
         hash
     })

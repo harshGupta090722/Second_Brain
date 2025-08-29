@@ -21,18 +21,17 @@ export function CreateContentModel({ open, onclose }) {
         const title = titleRef.current?.value;
         const link = linkRef.current?.value;
 
-        await axios.post(`${BACKEND_URL}/content`), {
+        await axios.post(`${BACKEND_URL}/content`,{
             link,
             title,
             type
         }, {
-            header: {
-                "Authorization": localStorage.getItem("token")
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
-        }
+        })
+        onclose();
     }
-
-
 
     return <div>
         {open && <div className="w-screen h-screen bg-slate-500/60 fixed top-0 left-0 flex justify-center">
@@ -49,7 +48,7 @@ export function CreateContentModel({ open, onclose }) {
                     </div>
                     <div>
                         <h1>Type</h1>
-                        <div className="flex gap-1 p-4">
+                        <div className="flex gap-1 justify-center pb-4">
                             <Button text="Youtube" variant={type === ContentType.Youtube ? "primary" : "secondary"} onClick={() => {
                                 setType(ContentType.Youtube)
                             }}></Button>

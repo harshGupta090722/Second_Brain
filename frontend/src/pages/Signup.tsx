@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export function Signup() {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");   
+    const [error, setError] = useState("");
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
@@ -29,39 +29,49 @@ export function Signup() {
             });
             console.log("CONTROL REACHED HERE SAFELY 2");
             if (response.status === 200) {
-                setError(""); 
+                setError("");
                 navigate("/signin");
             }
         } catch (error: any) {
             if (error.response && error.response.status === 400) {
-                setError("User already exists !!"); 
+                setError("User already exists");
             } else {
-                setError("Signup failed, please try again"); 
+                setError("Signup failed, please try again");
                 console.error(error);
             }
         }
     };
 
     return (
-        <div className="h-screen w-screen bg-gray-200 flex justify-center items-center">
-            <div className="bg-white rounded-xl border min-w-48 p-8">
-                <Input ref={usernameRef} placeholder="username" />
-                <Input ref={passwordRef} placeholder="password" />
+        <div className="h-screen w-screen bg-gradient-to-br from-[#fdfcfb] via-[#e2f0f1] to-[#e8f0ff] flex justify-center items-center">
+            <div className="bg-white/90 backdrop-blur-md rounded-xl border border-gray-200 min-w-48 p-8 shadow-lg">
+                <h2 className="text-2xl font-extrabold text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-sky-400 to-indigo-400 mb-6">
+                    Create Your Account
+                </h2>
 
-                {/*Idhr erorr message display hoga*/}
+                <Input
+                    ref={usernameRef}
+                    placeholder="Username"
+                />
+                <Input
+                    ref={passwordRef}
+                    placeholder="Password"
+                />
+
+                {/* Error message */}
                 {error && (
-                    <p className="text-red-500 text-sm font-medium mt-2">
+                    <p className="text-red-500 text-sm font-medium mb-2">
                         {error}
                     </p>
                 )}
 
                 <div className="flex justify-center pt-4">
-                    <Button 
-                        onClick={handleSignup} 
-                        loading={loading} 
-                        variant="primary" 
-                        text="Signup" 
-                        fullWidth={true} 
+                    <Button
+                        onClick={handleSignup}
+                        loading={loading}
+                        variant="primary"
+                        text="Signup"
+                        fullWidth={true}
                     />
                 </div>
             </div>

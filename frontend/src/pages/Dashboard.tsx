@@ -27,7 +27,6 @@ export function Dashboard() {
             <CreateContentModel open={modelOpen} onclose={() => {
                 setModelOpen(false);
             }} />
-
             <div className="flex justify-end gap-4">
                 <Button onClick={() =>
                     setModelOpen(true)} variant="primary" text="Add Content" startIcon={<Plusicon />}></Button>

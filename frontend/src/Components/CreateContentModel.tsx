@@ -14,17 +14,17 @@ enum ContentType {
 export function CreateContentModel({ open, onclose }) {
     const titleRef = useRef<HTMLInputElement>(null);
     const linkRef = useRef<HTMLInputElement>(null);
-    const [type, setType] = useState(ContentType.Youtube);
+    const [type, setType] = useState(ContentType.Twitter);
 
 
     async function addContent() {
         const title = titleRef.current?.value;
         const link = linkRef.current?.value;
 
-        await axios.post(`${BACKEND_URL}/content`,{
+        await axios.post(`${BACKEND_URL}/content`, {
             link,
-            title,
-            type
+            type,
+            title
         }, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`

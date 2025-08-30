@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '../Components/Button'
 import { Card } from '../Components/Card'
 import { CreateContentModel } from '../Components/CreateContentModel'
@@ -6,11 +6,18 @@ import { Plusicon } from '../icons/Plusicon'
 import { Shareicon } from '../icons/Shareicon'
 import { Sidebar } from '../Components/Sidebar'
 import { useContent } from '../hooks/useContent'
+import { BACKEND_URL } from '../config'
+import axios from 'axios'
 
 export function Dashboard() {
 
     const [modelOpen, setModelOpen] = useState(false);
-    const contents = useContent();
+    const { contents, refresh } = useContent();
+
+
+    useEffect(() => {
+        refresh();
+    }, [modelOpen])
 
     return <div>
         <Sidebar />
@@ -24,13 +31,24 @@ export function Dashboard() {
             <div className="flex justify-end gap-4">
                 <Button onClick={() =>
                     setModelOpen(true)} variant="primary" text="Add Content" startIcon={<Plusicon />}></Button>
-                <Button variant="secondary" text="Share Brain" startIcon={<Shareicon />}></Button>
-            </div>
+                <Button onClick={async () => {
+                    const response = await axios.post(`${BACKEND_URL}/brain/share`, {
+                        share: true
+                    }, {
+                        headers: {
+                            "Authorization": `Bearer ${localStorage.getItem("token")}`
+                        }
+                    })
+                    const shareUrl = `http://localhost:5173/share/${response.data.hash}`;
+                    navigator.clipboard.writeText(shareUrl);
+                    alert(shareUrl);
 
-            <div className='flex gap-4'>
-                {contents.map(({ type, link, title }, index) => (
+                }} variant="secondary" text="Share Brain" startIcon={<Shareicon />}></Button>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {contents.map(({ type, link, title }) => (
                     <Card
-                        key={index} // or better, a unique id from backend
+                        key={link}  // ideally use an id
                         type={type}
                         link={link}
                         title={title}

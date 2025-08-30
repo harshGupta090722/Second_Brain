@@ -10,6 +10,7 @@ function App() {
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/signin" element={<Signin />}></Route>
       <Route path="/dashboard" element={<Dashboard />}></Route>
+      <Route path="/share/:shareOd" element=/*{should go to some other component}*/{<Dashboard />}></Route >
     </Routes>
   </BrowserRouter>
 }

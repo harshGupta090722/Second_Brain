@@ -82,7 +82,7 @@ app.post("/api/v1/content", userMiddleware, async (req, res) => {
         return res.status(500).json({ error: "Failed to add Content" });
     }
 })
-
+//Get all Posts/Contents
 app.get("/api/v1/content", userMiddleware, async (req, res) => {
     const userId = req.userId;
     const content = await ContentModel.find({
@@ -93,6 +93,25 @@ app.get("/api/v1/content", userMiddleware, async (req, res) => {
         message: "Here is your content"
     })
 })
+
+//Filter posts
+app.get("/api/v1/content/:type", userMiddleware, async (req, res) => {
+    const userId = req.userId;
+    const type = req.params.type;
+    try {
+        const typecontent = await ContentModel.find({
+            userId,
+            type
+        });
+
+        res.json({
+            content:typecontent,
+            message: `Here are you all ${type} Posts`
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong", error })
+    }
+});
 
 app.delete("/api/v1/content", async (req, res) => {
     const contentId = req.body.contentId;

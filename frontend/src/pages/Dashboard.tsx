@@ -12,7 +12,12 @@ import axios from 'axios'
 export function Dashboard() {
 
     const [modelOpen, setModelOpen] = useState(false);
-    const { contents, refresh } = useContent();
+    const [filter, setFilter] = useState<string | undefined>(undefined);
+    const { contents, refresh } = useContent(filter);
+
+    const handleSidebarSelect = (type: string) => {
+        setFilter(type);
+    }
 
 
     useEffect(() => {
@@ -20,16 +25,18 @@ export function Dashboard() {
     }, [modelOpen])
 
     return <div>
-        <Sidebar />
+        <Sidebar onSelect={handleSidebarSelect} />
 
         <div className="p-4 ml-76 min-h-screen bg-gray-100">
 
             <CreateContentModel open={modelOpen} onclose={() => {
                 setModelOpen(false);
             }} />
+            {/*Content Model and Buttons*/}
             <div className="flex justify-end gap-4">
                 <Button onClick={() =>
                     setModelOpen(true)} variant="primary" text="Add Content" startIcon={<Plusicon />}></Button>
+
                 <Button onClick={async () => {
                     const response = await axios.post(`${BACKEND_URL}/brain/share`, {
                         share: true
@@ -44,6 +51,7 @@ export function Dashboard() {
 
                 }} variant="secondary" text="Share Brain" startIcon={<Shareicon />}></Button>
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {contents.map(({ type, link, title }) => (
                     <Card

@@ -2,10 +2,12 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { BACKEND_URL } from "../config";
 
-export function useContent() {
+export function useContent(type?: string) {
     const [contents, setContents] = useState([]);
+
     function refresh() {
-        axios.get(`${BACKEND_URL}/content`, {
+        let url = type ? `${BACKEND_URL}/content/${type}` : `${BACKEND_URL}/content`;
+        axios.get(url, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
@@ -13,16 +15,15 @@ export function useContent() {
             .then((response) => {
                 setContents(response.data.content)
             })
+            .catch(console.error);
     }
 
-    useEffect(() => { //We can't use async await here ,so that's why we are using .then
+    useEffect(() => {
         refresh();
-        let interval = setInterval(() => {
-            refresh();
-        }, 10 * 1000)
-        return () => {
-            clearInterval(interval);
-        }
-    }, [])
+        const interval = setInterval(refresh, 10000);
+        return () => clearInterval(interval);
+    }, [type]);
+
+
     return { contents, refresh };
 }

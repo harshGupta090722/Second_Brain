@@ -3,18 +3,25 @@ import { Twittericon } from "../icons/Twittericon";
 import { Youtubeicon } from "../icons/Youtubeicon";
 import { Sidebaritem } from "./SidebarItem";
 
-export function Sidebar() {
-    return <div className=" h-screen bg-white border-r w-72 fixed
+interface SidebarProps {
+    onSelect?: (type: string) => void;
+}
+
+
+export function Sidebar({ onSelect }: SidebarProps) {
+    return (
+        <div className=" h-screen bg-white border-r w-72 fixed
     left-0 top-0  pl-6">
-        <div className="flex text-2xl pt-8 items-center">
-            <div className="pr-3 ">
-                <Logo />
+            <div className="flex text-2xl pt-8 items-center">
+                <div className="pr-3 ">
+                    <Logo />
+                </div>
+                Brainly
             </div>
-            Brainly
+            <div className="pt-8 pl-4">
+                <Sidebaritem text="Twitter" icon={<Twittericon />} onSelect={onSelect}></Sidebaritem>
+                <Sidebaritem text="Youtube" icon={<Youtubeicon />} onSelect={onSelect}></Sidebaritem>
+            </div>
         </div>
-        <div className="pt-8 pl-4">
-            <Sidebaritem text="Twitter" icon={<Twittericon />}></Sidebaritem>
-            <Sidebaritem text="Youtube" icon={<Youtubeicon />}></Sidebaritem>
-        </div>
-    </div>
+    )
 }

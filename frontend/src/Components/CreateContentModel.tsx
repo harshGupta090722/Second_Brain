@@ -55,6 +55,39 @@ export function CreateContentModel({ open, onclose }) {
                             <Button text="Twitter" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
                                 setType(ContentType.Twitter)
                             }}></Button>
+                            <Button text="Instagram" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Twitter)
+                            }}></Button>
+                            <Button text="Facebook" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Twitter)
+                            }}></Button>
+                            <Button text="Reddit" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Twitter)
+                            }}></Button>
+                            <Button text="LinkedIn" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Twitter)
+                            }}></Button>
+                            <Button text="GitHub" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Twitter)
+                            }}></Button>
+                            <Button text="Quora" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Twitter)
+                            }}></Button>
+                            <Button text="Canva" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Twitter)
+                            }}></Button>
+                            <Button text="Netflix" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Twitter)
+                            }}></Button>
+                            <Button text="Amazon" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Twitter)
+                            }}></Button>
+                            <Button text="Flipkart" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Twitter)
+                            }}></Button>
+                            <Button text="Yahoo" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Twitter)
+                            }}></Button>
                         </div>
                     </div>
                     <div className="flex justify-center">

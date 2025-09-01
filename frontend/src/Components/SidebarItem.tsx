@@ -19,7 +19,7 @@ export function Sidebaritem({ text, icon, onSelect }: SidebarItemProps) {
 
     return (
         <div
-            className={`flex items-center text-gray-700 py-2 cursor-pointer hover:bg-gray-200 rounded max-w-60 transition-all duration-150
+            className={`flex items-center  text-gray-700 py-2 cursor-pointer hover:bg-gray-200 rounded max-w-60 transition-all duration-150
            ${clicked ? "bg-gray-300 scale-95" : " "}`}
             onClick={handleClick}>
             <div className="pr-2">{icon}</div>

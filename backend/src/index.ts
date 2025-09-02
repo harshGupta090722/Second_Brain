@@ -64,6 +64,12 @@ app.post("/api/v1/signin", async (req, res) => {
     }
 })
 
+app.post("/api/v1/logout", userMiddleware, (req, res) => {
+    console.log("Logging out user Id:", req.userId);
+
+    res.status(200).json({ message: "Logout successful" });
+})
+
 app.post("/api/v1/content", userMiddleware, async (req, res) => {
     try {
         const { title, link, type } = req.body;
@@ -82,6 +88,7 @@ app.post("/api/v1/content", userMiddleware, async (req, res) => {
         return res.status(500).json({ error: "Failed to add Content" });
     }
 })
+
 //Get all Posts/Contents
 app.get("/api/v1/content", userMiddleware, async (req, res) => {
     const userId = req.userId;
@@ -105,7 +112,7 @@ app.get("/api/v1/content/:type", userMiddleware, async (req, res) => {
         });
 
         res.json({
-            content:typecontent,
+            content: typecontent,
             message: `Here are you all ${type} Posts`
         });
     } catch (error) {

@@ -11,7 +11,7 @@ interface CardProps {
 
 export function Card({ title, link, type }: CardProps) {
     return (
-        <div className="p-4 mt-4 bg-white rounded-md border border-gray-200 max-w-[15rem] min-w-[20rem] min-h-[25rem] max-h-[30rem] overflow-y-auto">
+        <div className="p-4 mt-4 bg-white rounded-2xl border border-gray-300 max-w-[15rem] min-w-[20rem] min-h-[25rem] max-h-[30rem] overflow-y-auto">
 
             {/* Header */}
             <div className="flex h-12 w-full justify-between sticky top-0 bg-white z-20  shadow-md">

@@ -14,7 +14,7 @@ const variantClasses = {
     secondary: "bg-gray-200 text-purple-600",
 }
 
-const defaultStyles = "px-4 py-2 rounded-md font-light flex items-center";
+const defaultStyles = "px-4 py-2 rounded-lg font-light flex items-center cursor-pointer";
 
 export function Button({ variant, text, startIcon, onClick, fullWidth, loading }: ButtonProps) {
 
@@ -32,7 +32,7 @@ export function Button({ variant, text, startIcon, onClick, fullWidth, loading }
             <span>Loading...</span>
         ) : (
             <>
-                {startIcon && <span className="pr-2 flex items-center">{startIcon}</span>}
+                {startIcon && <span className="pr-3 flex items-center">{startIcon}</span>}
                 {text}
             </>
         )}

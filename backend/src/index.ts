@@ -55,7 +55,8 @@ app.post("/api/v1/signin", async (req, res) => {
         }, JWT_PASSWORD)
         res.json({
             message: "You are Signed In !",
-            token
+            token,
+            username:username
         });
     } else {
         res.status(403).json({

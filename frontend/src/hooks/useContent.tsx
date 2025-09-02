@@ -15,6 +15,7 @@ export function useContent(type?: string) {
             .then((response) => {
                 setContents(response.data.content)
             })
+            
             .catch(console.error);
     }
 

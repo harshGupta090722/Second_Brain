@@ -13,6 +13,10 @@ import { Redditicon } from "../icons/Reddit";
 import { Facebookicon } from "../icons/Facebook";
 import { Instagramicon } from "../icons/Instagram";
 import { Sidebaritem } from "./SidebarItem";
+import { Button } from "./Button";
+import { Logouticon } from "../icons/Logouticon";
+import { BACKEND_URL } from "../config";
+import axios from "axios";
 
 
 interface SidebarProps {
@@ -22,7 +26,7 @@ interface SidebarProps {
 
 export function Sidebar({ onSelect }: SidebarProps) {
     return (
-        <div className=" h-screen background-blue shadow right-2px w-50 fixed left-0 top-0  pl-6">
+        <div className=" h-screen-[2] background-blue shadow right-2px w-50 fixed left-0 top-0  pl-6">
             <div className="flex text-2xl pt-8 items-center">
                 <div className="pr-3 ">
                     <Logo />
@@ -44,6 +48,32 @@ export function Sidebar({ onSelect }: SidebarProps) {
                 <Sidebaritem text="Flipkart" icon={<Flipkarticon />} onSelect={onSelect}></Sidebaritem>
                 <Sidebaritem text="Yahoo" icon={<Yahooicon />} onSelect={onSelect}></Sidebaritem>
             </div>
-        </div>
+            <div >
+                <Button
+                    variant="primary"
+                    text="Logout"
+                    startIcon={<Logouticon />}
+                    fullWidth={true}
+                    onClick={async () => {
+                        try {
+                            await axios.post(`${BACKEND_URL}/logout`, {}, {
+                                headers: {
+                                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                                },
+                            });
+
+                            localStorage.removeItem("token");
+                            localStorage.removeItem("username");
+                            window.location.href = "/";
+
+                        } catch (err) {
+                            console.error("Logout failed:", err);
+                            alert("Logout failed. Try again.");
+                        }
+                    }}
+                />
+
+            </div>
+        </div >
     )
 }

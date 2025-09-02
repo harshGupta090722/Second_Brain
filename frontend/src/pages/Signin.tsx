@@ -22,16 +22,20 @@ export function Signin() {
         }, 2000);
 
         try {
-            console.log("CONTROL REACHED HERE SAFELY 1");
             const response = await axios.post(`${BACKEND_URL}/signin`, {
                 username,
                 password,
             });
-            console.log("CONTROL REACHED HERE SAFELY 2");
 
             if (response.status === 200) {
-                const jwt = response.data.token;
-                localStorage.setItem("token", jwt);
+                const { token, username } = response.data;
+                localStorage.setItem("token", token);
+                if (username && typeof username === "string") {
+                    localStorage.setItem("username", username);
+                } else {
+                    console.warn("Username not valid, not storing in localStorage");
+                }
+
                 navigate("/dashboard");
             }
         } catch (error: any) {

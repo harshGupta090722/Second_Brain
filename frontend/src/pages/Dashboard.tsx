@@ -23,7 +23,7 @@ export function Dashboard() {
         refresh();
     }, [modelOpen]);
 
-    // Share brain handler
+    // Share-brain handler
     const handleShare = async () => {
         try {
             const response = await axios.post(
@@ -44,7 +44,7 @@ export function Dashboard() {
         }
     };
 
-    const user = localStorage.getItem("user") || "User";
+    const user = localStorage.getItem("username") || "User";
 
     return (
         <div>
@@ -54,22 +54,26 @@ export function Dashboard() {
                 <CreateContentModel open={modelOpen} onclose={() => setModelOpen(false)} />
 
                 {/* Top Actions */}
-                <div className="flex justify-end gap-4 items-center">
-                    <div className="text-gray-700">Welcome {user}</div>
+                <div className="flex justify-between items-center">
+                    <div className="flex-1 text-center text-3xl font-extrabold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-lg">
+                        Welcome {user}!
+                    </div>
 
-                    <Button
-                        onClick={() => setModelOpen(true)}
-                        variant="primary"
-                        text="Add Content"
-                        startIcon={<Plusicon />}
-                    />
+                    <div className="flex gap-4">
+                        <Button
+                            onClick={() => setModelOpen(true)}
+                            variant="primary"
+                            text="Add Content"
+                            startIcon={<Plusicon />}
+                        />
 
-                    <Button
-                        onClick={handleShare}
-                        variant="secondary"
-                        text="Share Brain"
-                        startIcon={<Shareicon />}
-                    />
+                        <Button
+                            onClick={handleShare}
+                            variant="secondary"
+                            text="Share Brain"
+                            startIcon={<Shareicon />}
+                        />
+                    </div>
                 </div>
 
                 {/* Content Grid */}

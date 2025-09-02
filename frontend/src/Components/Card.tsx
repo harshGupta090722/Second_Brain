@@ -11,7 +11,7 @@ interface CardProps {
 
 export function Card({ title, link, type }: CardProps) {
     return (
-        <div className="p-4 mt-4 bg-white rounded-2xl border border-gray-300 max-w-[15rem] min-w-[20rem] min-h-[25rem] max-h-[30rem] overflow-y-auto">
+        <div className="p-0 mt-4 bg-white rounded-2xl border border-gray-300 max-w-[15rem] min-w-[20rem] min-h-[25rem] max-h-[30rem] overflow-y-auto">
 
             {/* Header */}
             <div className="flex h-12 w-full justify-between sticky top-0 bg-white z-20  shadow-md">
@@ -38,7 +38,7 @@ export function Card({ title, link, type }: CardProps) {
             </div>
 
             {/* Body */}
-            <div className="pt-1">
+            <div className="pr-1 pl-1">
                 {type === "twitter" && (
                     <blockquote className="twitter-tweet">
                         <a href={link.replace("x.com", "twitter.com")}></a>
@@ -71,6 +71,7 @@ export function Card({ title, link, type }: CardProps) {
                 {type === "flipkart"}
                 {type === "yahoo"}
             </div>
+
         </div>
     );
 }

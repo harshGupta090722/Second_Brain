@@ -7,7 +7,18 @@ import { BACKEND_URL } from "../config";
 
 enum ContentType {
     Youtube = "youtube",
-    Twitter = "twitter"
+    Twitter = "twitter",
+    Instagram = "instagram",
+    Facebook = "facebook",
+    Reddit = "reddit",
+    LinkedIn = "linkedin",
+    GitHub = "github",
+    Quora = "quora",
+    Canva = "canva",
+    Netflix = "netflix",
+    Amazon = "amazon",
+    Flipkart = "flipkart",
+    Yahoo = "yahoo"
 }
 
 //controlled component
@@ -48,6 +59,7 @@ export function CreateContentModel({ open, onclose }) {
                     </div>
                     <div>
                         <h1>Type</h1>
+
                         <div className="flex gap-1 justify-center pb-4">
                             <Button text="Youtube" variant={type === ContentType.Youtube ? "primary" : "secondary"} onClick={() => {
                                 setType(ContentType.Youtube)
@@ -55,40 +67,41 @@ export function CreateContentModel({ open, onclose }) {
                             <Button text="Twitter" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
                                 setType(ContentType.Twitter)
                             }}></Button>
-                            <Button text="Instagram" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Twitter)
+                            <Button text="Instagram" variant={type === ContentType.Instagram ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Instagram)
                             }}></Button>
-                            <Button text="Facebook" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Twitter)
+                            <Button text="Facebook" variant={type === ContentType.Facebook ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Facebook )
                             }}></Button>
-                            <Button text="Reddit" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Twitter)
+                            <Button text="Reddit" variant={type === ContentType.Reddit ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Reddit)
                             }}></Button>
-                            <Button text="LinkedIn" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Twitter)
+                            <Button text="LinkedIn" variant={type === ContentType.LinkedIn ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.LinkedIn)
                             }}></Button>
-                            <Button text="GitHub" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Twitter)
+                            <Button text="GitHub" variant={type === ContentType.GitHub ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.GitHub)
                             }}></Button>
-                            <Button text="Quora" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Twitter)
+                            <Button text="Quora" variant={type === ContentType.Quora ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Quora )
                             }}></Button>
-                            <Button text="Canva" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Twitter)
+                            <Button text="Canva" variant={type === ContentType.Canva ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Canva)
                             }}></Button>
-                            <Button text="Netflix" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Twitter)
+                            <Button text="Netflix" variant={type === ContentType.Netflix ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Netflix)
                             }}></Button>
-                            <Button text="Amazon" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Twitter)
+                            <Button text="Amazon" variant={type === ContentType.Amazon ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Amazon)
                             }}></Button>
-                            <Button text="Flipkart" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Twitter)
+                            <Button text="Flipkart" variant={type === ContentType.Flipkart ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Flipkart)
                             }}></Button>
-                            <Button text="Yahoo" variant={type === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Twitter)
+                            <Button text="Yahoo" variant={type === ContentType.Yahoo ? "primary" : "secondary"} onClick={() => {
+                                setType(ContentType.Yahoo)
                             }}></Button>
                         </div>
+                        
                     </div>
                     <div className="flex justify-center">
                         <Button onClick={addContent} variant="primary" text="Submit"></Button>

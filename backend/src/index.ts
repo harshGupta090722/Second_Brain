@@ -12,6 +12,8 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+const secret = process.env.JWT_PASSWORD || "harshgupta";
+
 const port = process.env.PORT || 3000;
 
 app.use(cors());
@@ -58,7 +60,7 @@ app.post("/api/v1/signin", async (req, res) => {
     if (existingUser) {
         const token = jwt.sign({
             id: existingUser._id
-        }, JWT_PASSWORD)
+        }, secret)
         res.json({
             message: "You are Signed In !",
             token,

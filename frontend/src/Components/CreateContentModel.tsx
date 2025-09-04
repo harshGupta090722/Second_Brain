@@ -20,9 +20,12 @@ enum ContentType {
     Flipkart = "flipkart",
     Yahoo = "yahoo"
 }
-
+interface MyComponentProps {
+    open: boolean;
+    onclose: () => void
+}
 //controlled component
-export function CreateContentModel({ open, onclose }) {
+export function CreateContentModel({ open, onclose }: MyComponentProps) {
     const titleRef = useRef<HTMLInputElement>(null);
     const linkRef = useRef<HTMLInputElement>(null);
     const [type, setType] = useState(ContentType.Twitter);
@@ -71,7 +74,7 @@ export function CreateContentModel({ open, onclose }) {
                                 setType(ContentType.Instagram)
                             }}></Button>
                             <Button text="Facebook" variant={type === ContentType.Facebook ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Facebook )
+                                setType(ContentType.Facebook)
                             }}></Button>
                             <Button text="Reddit" variant={type === ContentType.Reddit ? "primary" : "secondary"} onClick={() => {
                                 setType(ContentType.Reddit)
@@ -83,7 +86,7 @@ export function CreateContentModel({ open, onclose }) {
                                 setType(ContentType.GitHub)
                             }}></Button>
                             <Button text="Quora" variant={type === ContentType.Quora ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Quora )
+                                setType(ContentType.Quora)
                             }}></Button>
                             <Button text="Canva" variant={type === ContentType.Canva ? "primary" : "secondary"} onClick={() => {
                                 setType(ContentType.Canva)
@@ -101,7 +104,7 @@ export function CreateContentModel({ open, onclose }) {
                                 setType(ContentType.Yahoo)
                             }}></Button>
                         </div>
-                        
+
                     </div>
                     <div className="flex justify-center">
                         <Button onClick={addContent} variant="primary" text="Submit"></Button>

@@ -4,6 +4,7 @@ import { ContentModel, LinkModel, UserModel } from "./db.js";
 import { JWT_PASSWORD } from "./config.js";
 import { userMiddleware } from "./middleware.js";
 import { random } from "./util.js";
+import mongoose from "mongoose";
 const app = express();
 app.use(express.json());
 import cors from "cors"
@@ -56,7 +57,7 @@ app.post("/api/v1/signin", async (req, res) => {
         res.json({
             message: "You are Signed In !",
             token,
-            username:username
+            username: username
         });
     } else {
         res.status(403).json({
@@ -121,15 +122,23 @@ app.get("/api/v1/content/:type", userMiddleware, async (req, res) => {
     }
 });
 
-app.delete("/api/v1/content", async (req, res) => {
-    const contentId = req.body.contentId;
+app.delete("/api/v1/content", userMiddleware, async (req, res) => {
+    try {
+        const { contentId } = req.body;
 
-    await ContentModel.deleteMany({
-        contentId,
-        //@ts-ignore
-        userId: req.userId
-    })
-})
+        const result = await ContentModel.deleteOne({
+            _id: new mongoose.Types.ObjectId(contentId),
+            userId: req.userId
+        });
+
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ message: "Content not found" });
+        }
+        res.status(200).json({ message: "Content deleted successfully" });
+    } catch (err: any) {
+        res.status(500).json({ message: "Something went wrong", error: err.message });
+    }
+});
 
 app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
     const share = req.body.share;

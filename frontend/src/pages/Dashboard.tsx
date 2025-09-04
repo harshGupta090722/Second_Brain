@@ -78,8 +78,15 @@ export function Dashboard() {
 
                 {/* Content Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
-                    {contents.map(({ type, link, title }) => (
-                        <Card type={type} link={link} title={title} />
+                    {contents.map(({ _id, type, link, title }) => (
+                        <Card
+                            key={_id}
+                            _id={_id}
+                            type={type}
+                            link={link}
+                            title={title}
+                            refresh={refresh}
+                        />
                     ))}
                 </div>
             </div >

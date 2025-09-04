@@ -45,7 +45,7 @@ export function CreateContentModel({ open, onclose }) {
     }
 
     return <div>
-        {open && <div className="w-screen h-screen bg-slate-500/60 fixed top-0 left-0 flex justify-center">
+        {open && <div className="w-screen h-screen bg-slate-500/60 fixed top-0 left-0 flex justify-center z-50">
             <div className="flex flex-col justify-center">
                 <span className="bg-white p-4 rounded">
                     <div className="flex justify-end">
@@ -60,7 +60,7 @@ export function CreateContentModel({ open, onclose }) {
                     <div>
                         <h1>Type</h1>
 
-                        <div className="flex gap-1 justify-center pb-4">
+                        <div className="grid grid-cols-4 gap-2 justify-items-center pb-4">
                             <Button text="Youtube" variant={type === ContentType.Youtube ? "primary" : "secondary"} onClick={() => {
                                 setType(ContentType.Youtube)
                             }}></Button>

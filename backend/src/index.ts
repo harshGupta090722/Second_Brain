@@ -5,9 +5,14 @@ import { JWT_PASSWORD } from "./config.js";
 import { userMiddleware } from "./middleware.js";
 import { random } from "./util.js";
 import mongoose from "mongoose";
+import cors from "cors"
+import dotenv from "dotenv"
+dotenv.config();
+
 const app = express();
 app.use(express.json());
-import cors from "cors"
+
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 declare global {
@@ -206,6 +211,6 @@ app.get("/api/v1/brain/:shareLink", async (req, res) => {
     })
 })
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log("Server is running on port 3000");
 });

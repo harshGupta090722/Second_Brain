@@ -5,6 +5,7 @@ import { userMiddleware } from "./middleware.js";
 import { random } from "./util.js";
 import mongoose from "mongoose";
 import cors from "cors"
+import { Request, Response } from "express";
 import dotenv from "dotenv"
 dotenv.config();
 
@@ -24,7 +25,7 @@ declare global {
     }
 }
 
-app.post("/api/v1/signup", async (req, res) => {
+app.post("/api/v1/signup", async (req:Request, res:Response) => {
 
     const { username, password } = req.body;
     try {
@@ -48,7 +49,7 @@ app.post("/api/v1/signup", async (req, res) => {
     }
 })
 
-app.post("/api/v1/signin", async (req, res) => {
+app.post("/api/v1/signin", async (req:Request, res:Response) => {
     const { username, password } = req.body;
 
     const existingUser = await UserModel.findOne({
@@ -72,7 +73,7 @@ app.post("/api/v1/signin", async (req, res) => {
     }
 })
 
-app.post("/api/v1/logout", userMiddleware, (req, res) => {
+app.post("/api/v1/logout", userMiddleware, (req:Request, res:Response) => {
     console.log("Logging out user Id:", req.userId);
 
     res.status(200).json({ message: "Logout successful" });
@@ -98,7 +99,7 @@ app.post("/api/v1/content", userMiddleware, async (req, res) => {
 })
 
 //Get all Posts/Contents
-app.get("/api/v1/content", userMiddleware, async (req, res) => {
+app.get("/api/v1/content", userMiddleware, async (req:Request, res:Response) => {
     const userId = req.userId;
     const content = await ContentModel.find({
         userId: userId
@@ -110,7 +111,7 @@ app.get("/api/v1/content", userMiddleware, async (req, res) => {
 })
 
 //Filter posts
-app.get("/api/v1/content/:type", userMiddleware, async (req, res) => {
+app.get("/api/v1/content/:type", userMiddleware, async (req:Request, res:Response) => {
     const userId = req.userId;
     const type = req.params.type;
     try {
@@ -128,7 +129,7 @@ app.get("/api/v1/content/:type", userMiddleware, async (req, res) => {
     }
 });
 
-app.delete("/api/v1/content", userMiddleware, async (req, res) => {
+app.delete("/api/v1/content", userMiddleware, async (req:Request, res:Response) => {
     try {
         const { contentId } = req.body;
 
@@ -146,7 +147,7 @@ app.delete("/api/v1/content", userMiddleware, async (req, res) => {
     }
 });
 
-app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
+app.post("/api/v1/brain/share", userMiddleware, async (req:Request, res:Response) => {
     const share = req.body.share;
     if (share) {
         const existingLink = await LinkModel.findOne({
@@ -177,7 +178,7 @@ app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
     }
 })
 
-app.get("/api/v1/brain/:shareLink", async (req, res) => {
+app.get("/api/v1/brain/:shareLink", async (req:Request, res:Response) => {
     const hash = req.params.shareLink;
     const link = await LinkModel.findOne({
         hash

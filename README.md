@@ -7,6 +7,7 @@ It acts like your personal knowledge hub, but shareable with others.
 ![React](https://img.shields.io/badge/Frontend-React-blue)
 ![Express](https://img.shields.io/badge/Backend-Express-black)
 ![MongoDB](https://img.shields.io/badge/Database-MongoDB-green)
+![TypeScript](https://img.shields.io/badge/Language-TypeScript-3178c6)
 
 ✨ Features
 
@@ -22,7 +23,13 @@ It acts like your personal knowledge hub, but shareable with others.
 🖼️ UI/UX Preview  
 
 🔹 Landing Page  
-![Landing Page](./assets/Landing_Page.png)  
+![Landing Page](./assets/Landing_Page.png) 
+
+🔹 Sign Up Page  
+![Sign Up Page](./assets/SignUp_Page.png) 
+
+🔹 Sign In Page  
+![Sign In Page](./assets/SignIn_Page.png)  
 
 🔹 Dashboard  
 ![Dashboard](./assets/Dashboard.png)  
@@ -30,11 +37,7 @@ It acts like your personal knowledge hub, but shareable with others.
 🔹 Filtered Content  
 ![Filtered Content](./assets/Filtered_Content.png)  
 
-🔹 Sign In Page  
-![Sign In Page](./assets/SignIn_Page.png)  
 
-🔹 Sign Up Page  
-![Sign Up Page](./assets/SignUp_Page.png)  
 
 ---
 

@@ -3,7 +3,6 @@
 Second Brain is a link-sharing app where users can collect, organize, and share their favorite content from across the internet — videos, tweets, articles, or any web link.
 It acts like your personal knowledge hub, but shareable with others.
 
-![License](https://img.shields.io/badge/License-MIT-green.svg)
 ![React](https://img.shields.io/badge/Frontend-React-blue)
 ![Express](https://img.shields.io/badge/Backend-Express-black)
 ![MongoDB](https://img.shields.io/badge/Database-MongoDB-green)

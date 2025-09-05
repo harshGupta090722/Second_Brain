@@ -1,32 +1,40 @@
 {
   "compilerOptions": {
     // File Layout
+    "jsx": "react-jsx",
     "rootDir": "./src",
     "outDir": "./dist",
-
     // Environment Settings
-    "module": "commonjs",         // use commonjs for Node.js backend
-    "target": "es2020",           // modern JS, stable for Node 20+
-    "lib": ["esnext"],
-    "types": ["node"],            // 👈 explicitly include node types
-
+    "module": "nodenext", // use commonjs for Node.js backend
+    "moduleResolution": "nodenext",
+    "target": "es2022", // modern JS, stable for Node 20+
+    "lib": [
+      "esnext"
+    ],
+    "types": [
+      "node"
+    ], // 👈 explicitly include node types
     // Type Declarations
-    "typeRoots": ["./node_modules/@types"],
-
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
     // Outputs
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
-
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-
     // Recommended Options
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

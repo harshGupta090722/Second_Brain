@@ -3,6 +3,7 @@ import { Deleteicon } from "../icons/Deleteicon";
 import { Shareicon } from "../icons/Shareicon";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
+import { useEffect } from "react";
 
 interface CardProps {
     _id: string,
